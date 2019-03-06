@@ -1,12 +1,14 @@
 const restify = require('restify');
 const mongoose = require('mongoose');
-
+const jwt = require('restify-jwt-community');
 const router = new (require('restify-router')).Router();
+
 const server = restify.createServer({
 	name: 'orderer-api',
 	version: '1.0.0',
 });
 
+const jwtConfig = require('./config.json');
 const config = require('./config');
 const logger = require('./basic-logger');
 
@@ -45,6 +47,12 @@ router.add('/api/order', order);
 router.add('/api/product', product);
 router.add('/api/user', user);
 router.applyRoutes(server);
+
+server.use(jwt({ secret: jwtConfig.jwt.secret}).unless({
+    path: [
+        config.basePath('user/auth')
+    ]
+}))
 
 server.on('after', restify.plugins.metrics({ server: server }, function onMetrics(err, metrics) {
 	logger.trace(`${metrics.method} ${metrics.path} ${metrics.statusCode} ${metrics.latency} ms`);

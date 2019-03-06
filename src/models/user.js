@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -8,72 +10,72 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
-    },
-    login: {
-        type: String,
-        required: true
+        required: true,
+        unique: true,
+        index: true
     },
     password: {
         type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    cpf: {
-        type: String,
-        required: true
-    },
-    address: {
-        street: {
-            type: String,
-            required: true
-        },
-        quarter: {
-            type: String,
-            required: true
-        },
-        number: {
-            type: Number,
-            required: true
-        },
-        complement: {
-            type: String
-        },
-        zipcode: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true
-        },
-        state: {
-            type: String,
-            required: true
-        }
-    },
-    balance: {
-        type: Number,
-        default: 0
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    image: {
-        type: String
+        required: true,
+        index: true
     }
+    // phone: {
+    //     type: String,
+    //     required: true
+    // },
+    // cpf: {
+    //     type: String,
+    //     required: true
+    // },
+    // address: {
+    //     street: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     quarter: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     number: {
+    //         type: Number,
+    //         required: true
+    //     },
+    //     complement: {
+    //         type: String
+    //     },
+    //     zipcode: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     city: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     state: {
+    //         type: String,
+    //         required: true
+    //     }
+    // },
+    // balance: {
+    //     type: Number,
+    //     default: 0
+    // },
+    // isAdmin: {
+    //     type: Boolean,
+    //     default: false
+    // },
+    // image: {
+    //     type: String
+    // }
 })
 
 userSchema.pre('save', function (next) {
     var user = this;
-    if (!this.isModified('password') || this.isNew) return next();
+    if (!this.isModified('password') || !this.isNew) return next();
     bcrypt.genSalt(10, function (err, salt) {
         if (err) return next(err);
         bcrypt.hash(user.password, salt, function (err, hash) {
+            console.log(hash);
             if (err) return next(err);
             user.password = hash;
             next();
