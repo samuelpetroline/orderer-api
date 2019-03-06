@@ -12,6 +12,14 @@ const jwtConfig = require('./config.json');
 const config = require('./config');
 const logger = require('./basic-logger');
 
+server.use(jwt(jwtConfig.jwt).unless({
+    path: [
+		config.basePath('/auth'),
+		config.basePath('/register')
+    ]
+}))
+
+const auth = require('./src/routes/auth');
 const order = require('./src/routes/order');
 const product = require('./src/routes/product');
 const user = require('./src/routes/user');
@@ -43,16 +51,11 @@ server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.gzipResponse());
 
+router.add('/api', auth);
 router.add('/api/order', order);
 router.add('/api/product', product);
 router.add('/api/user', user);
 router.applyRoutes(server);
-
-server.use(jwt({ secret: jwtConfig.jwt.secret}).unless({
-    path: [
-        config.basePath('user/auth')
-    ]
-}))
 
 server.on('after', restify.plugins.metrics({ server: server }, function onMetrics(err, metrics) {
 	logger.trace(`${metrics.method} ${metrics.path} ${metrics.statusCode} ${metrics.latency} ms`);

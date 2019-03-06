@@ -202,3 +202,25 @@
 {"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":14840,"level":10,"msg":"POST /api/user 400 160 ms","time":"2019-03-06T06:49:08.760Z","v":0}
 {"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":15600,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T06:49:30.344Z","v":0}
 {"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":14568,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T06:49:49.565Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":8776,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:26:10.292Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":8776,"level":10,"msg":"POST /api/product 401 9 ms","time":"2019-03-06T17:27:01.438Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":8776,"level":10,"msg":"POST /api/user/auth 405 2 ms","time":"2019-03-06T17:27:09.527Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":11164,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:27:45.929Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":11696,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:28:11.010Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":11696,"level":10,"msg":"POST /api/auth 401 32 ms","time":"2019-03-06T17:28:13.141Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":11696,"level":10,"msg":"POST /api/auth 401 14 ms","time":"2019-03-06T17:29:26.512Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":11696,"level":10,"msg":"POST /api/user 401 3 ms","time":"2019-03-06T17:30:02.858Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":2252,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:30:40.859Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":12144,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:30:46.931Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":12144,"level":10,"msg":"POST /api/register 200 143 ms","time":"2019-03-06T17:30:52.516Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":12144,"level":10,"msg":"POST /api/auth 401 15 ms","time":"2019-03-06T17:31:06.689Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":3604,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:31:26.184Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":10960,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:31:29.704Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":2836,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:32:45.542Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":6544,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:33:09.013Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":2496,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:33:12.691Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":11540,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:33:17.379Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":8876,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:33:28.181Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":8748,"level":30,"msg":"orderer-api listening at http://[::]:8080","time":"2019-03-06T17:33:30.608Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":8748,"level":10,"msg":"POST /api/auth 200 155 ms","time":"2019-03-06T17:33:36.109Z","v":0}
+{"name":"orderer-api","hostname":"DESKTOP-94S6US8","pid":8748,"level":10,"msg":"POST /api/product 200 21 ms","time":"2019-03-06T17:33:58.750Z","v":0}
