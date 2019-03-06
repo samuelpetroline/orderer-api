@@ -1,15 +1,25 @@
 const restify = require('restify');
 const mongoose = require('mongoose');
-
+const jwt = require('restify-jwt-community');
 const router = new (require('restify-router')).Router();
+
 const server = restify.createServer({
 	name: 'orderer-api',
 	version: '1.0.0',
 });
 
+const jwtConfig = require('./config.json');
 const config = require('./config');
 const logger = require('./basic-logger');
 
+server.use(jwt(jwtConfig.jwt).unless({
+    path: [
+		config.basePath('/auth'),
+		config.basePath('/register')
+    ]
+}))
+
+const auth = require('./src/routes/auth');
 const order = require('./src/routes/order');
 const product = require('./src/routes/product');
 const user = require('./src/routes/user');
@@ -41,6 +51,7 @@ server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.gzipResponse());
 
+router.add('/api', auth);
 router.add('/api/order', order);
 router.add('/api/product', product);
 router.add('/api/user', user);

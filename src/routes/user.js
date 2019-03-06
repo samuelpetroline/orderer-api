@@ -1,4 +1,7 @@
 const router = new (require('restify-router')).Router();
+const errors = require('restify-errors');
+
+const User = require('../models/user');
 
 router.get('/', function (req, res, next) {
 	res.json({
@@ -11,14 +14,6 @@ router.get('/', function (req, res, next) {
 router.get('/:name', function (req, res, next) {
 	res.json({
 		message: `Welcome to API ${req.params.name}`,
-		query: req.query
-	});
-	next();
-});
-
-router.post('/', function (req, res, next) {
-	res.json({
-		message: `Welcome to API ${req.body.name}`,
 		query: req.query
 	});
 	next();

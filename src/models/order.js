@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
     user: {
-        type: Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     products: [{
         item: {
-            type: Schema.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Product',
             required: true
         },
