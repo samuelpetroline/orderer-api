@@ -19,54 +19,54 @@ const userSchema = new Schema({
         required: true,
         index: true
     }
-    // phone: {
-    //     type: String,
-    //     required: true
-    // },
-    // cpf: {
-    //     type: String,
-    //     required: true
-    // },
-    // address: {
-    //     street: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     quarter: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     number: {
-    //         type: Number,
-    //         required: true
-    //     },
-    //     complement: {
-    //         type: String
-    //     },
-    //     zipcode: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     city: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     state: {
-    //         type: String,
-    //         required: true
-    //     }
-    // },
-    // balance: {
-    //     type: Number,
-    //     default: 0
-    // },
-    // isAdmin: {
-    //     type: Boolean,
-    //     default: false
-    // },
-    // image: {
-    //     type: String
-    // }
+    phone: {
+        type: String,
+        required: true
+    },
+    cpf: {
+        type: String,
+        required: true
+    },
+    address: {
+        street: {
+            type: String,
+            required: true
+        },
+        quarter: {
+            type: String,
+            required: true
+        },
+        number: {
+            type: Number,
+            required: true
+        },
+        complement: {
+            type: String
+        },
+        zipcode: {
+            type: String,
+            required: true
+        },
+        city: {
+            type: String,
+            required: true
+        },
+        state: {
+            type: String,
+            required: true
+        }
+    },
+    balance: {
+        type: Number,
+        default: 0
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    image: {
+        type: String
+    }
 })
 
 userSchema.pre('save', function (next) {
