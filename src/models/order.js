@@ -40,9 +40,9 @@ const orderSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['Novo', 'Em espera', 'Produzindo', 'Finalizado'],
+        enum: ['New', 'Waiting', 'Doing', 'Done'],
         required: true,
-        default: 'Novo'
+        default: 'New'
     }
 })
 

@@ -28,33 +28,36 @@ const userSchema = new Schema({
         required: true
     },
     address: {
-        street: {
-            type: String,
-            required: true
+        type: {
+            street: {
+                type: String,
+                required: true
+            },
+            quarter: {
+                type: String,
+                required: true
+            },
+            number: {
+                type: Number,
+                required: true
+            },
+            complement: {
+                type: String
+            },
+            zipcode: {
+                type: String,
+                required: true
+            },
+            city: {
+                type: String,
+                required: true
+            },
+            state: {
+                type: String,
+                required: true
+            }
         },
-        quarter: {
-            type: String,
-            required: true
-        },
-        number: {
-            type: Number,
-            required: true
-        },
-        complement: {
-            type: String
-        },
-        zipcode: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true
-        },
-        state: {
-            type: String,
-            required: true
-        }
+        required: true
     },
     balance: {
         type: Number,
@@ -71,7 +74,9 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
     var user = this;
+
     if (!this.isModified('password') || !this.isNew) return next();
+
     bcrypt.genSalt(10, function (err, salt) {
         if (err) return next(err);
         bcrypt.hash(user.password, salt, function (err, hash) {

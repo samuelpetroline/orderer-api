@@ -1,7 +1,7 @@
 const restify = require('restify');
 const mongoose = require('mongoose');
 const jwt = require('restify-jwt-community');
-const router = new (require('restify-router')).Router();
+const router = new(require('restify-router')).Router();
 
 const server = restify.createServer({
 	name: 'orderer-api',
@@ -13,10 +13,10 @@ const config = require('./config');
 const logger = require('./basic-logger');
 
 server.use(jwt(jwtConfig.jwt).unless({
-    path: [
+	path: [
 		config.basePath('/auth'),
 		config.basePath('/register')
-    ]
+	]
 }))
 
 const auth = require('./src/routes/auth');
@@ -27,23 +27,26 @@ const user = require('./src/routes/user');
 //#region Database
 console.log(config);
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db, {useNewUrlParser: true});
+mongoose.connect(config.db, {
+	useNewUrlParser: true,
+	useCreateIndex: true
+});
 
 let db = mongoose.connection;
-db.on('error', function() {
+db.on('error', function () {
 	throw new Error(`Unnable to connect to database ${config.db}`);
 })
 
-db.on('all', function(event, listener) {
+db.on('all', function (event, listener) {
 	console.log(event, listener);
 });
 //#endregion
 
 //#region Server
 server.use(restify.plugins.throttle({
-	burst: 100,  	// Max 10 concurrent requests (if tokens)
-	rate: 2,  		// Steady state: 2 request / 1 seconds
-	ip: true,		// throttle per IP
+	burst: 100, // Max 10 concurrent requests (if tokens)
+	rate: 2, // Steady state: 2 request / 1 seconds
+	ip: true, // throttle per IP
 }));
 
 server.use(restify.plugins.bodyParser());
@@ -57,7 +60,9 @@ router.add('/api/product', product);
 router.add('/api/user', user);
 router.applyRoutes(server);
 
-server.on('after', restify.plugins.metrics({ server: server }, function onMetrics(err, metrics) {
+server.on('after', restify.plugins.metrics({
+	server: server
+}, function onMetrics(err, metrics) {
 	logger.trace(`${metrics.method} ${metrics.path} ${metrics.statusCode} ${metrics.latency} ms`);
 }));
 

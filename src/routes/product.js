@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
         if (err) return next(new errors.BadRequestError(`Erro ao cadastrar produto: ${err}`));
 
         return next(res.send(product));
-    })
+    });
 });
 
 router.del('/:id', function (req, res, next) {
