@@ -37,11 +37,11 @@ router.post('/auth', function (req, res, next) {
 				});
 
 				// retrieve issue and expiration times
-				let { iat, exp } = jwt.verify(token, config.jwt.secret);
+				jwt.verify(token, config.jwt.secret);
 
 				next(res.send({
 					user:  data,
-					token: { iat, exp, token}
+					token: token
 				}));
 			}
 			catch (ex)

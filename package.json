@@ -21,6 +21,7 @@
 		"mongoose": "^5.4.17",
 		"path": "^0.12.7",
 		"restify": "^6.3.4",
+		"restify-cors-middleware": "^1.1.1",
 		"restify-errors": "^7.0.0",
 		"restify-jwt-community": "^1.0.9",
 		"restify-router": "^0.5.0"
