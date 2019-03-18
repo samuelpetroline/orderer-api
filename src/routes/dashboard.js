@@ -1,7 +1,7 @@
 const router = new(require('restify-router')).Router();
 const errors = require('restify-errors');
 
-const User = require('../models/user');
+const Dashboard = require('../models/dashboard');
 
 // router.get('/', function (req, res, next) {
 // 	res.json({

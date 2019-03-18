@@ -4,25 +4,24 @@ const errors = require('restify-errors');
 const Product = require('../models/product');
 
 router.get('/', function (req, res, next) {
-    res.json({
-        message: 'Welcome to product',
-        query: req.query
+    Product.find(req.query, function (err, products) {
+        if (err) return next(new errors.BadRequestError(`Erro ao listar os produtos: ${err}`));
+
+        return next(res.send(products));
     });
-    next();
 });
 
-router.get('/:name', function (req, res, next) {
-    res.json({
-        message: `Welcome to API ${req.params.name}`,
-        query: req.query
+router.get('/:id', function (req, res, next) {
+    Product.findById(req.params.id, function (err, product) {
+        if (err) return next(new errors.BadRequestError(`Erro ao carregar o produto: ${err}`));
+
+        return next(res.send(product));
     });
-    next();
 });
 
 router.post('/', function (req, res, next) {
-     var product = new Product(req.body);
-
-    product.save(function(err) {
+    let product = new Product(req.body);
+    product.save(function (err) {
         if (err) return next(new errors.BadRequestError(`Erro ao cadastrar produto: ${err}`));
 
         return next(res.send(product));
@@ -30,8 +29,13 @@ router.post('/', function (req, res, next) {
 });
 
 router.del('/:id', function (req, res, next) {
+    Product.deleteOne({
+        _id: req.params.id
+    }, function (err) {
+        if (err) return next(new errors.BadRequestError(`Erro ao deletar produto: ${err}`));
 
-    next();
+        return next(res.send("Deletado com sucesso!"));
+    })
 });
 
 module.exports = router;

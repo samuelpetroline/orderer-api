@@ -80,8 +80,6 @@ userSchema.pre('save', function (next) {
     bcrypt.genSalt(10, function (err, salt) {
         if (err) return next(err);
         bcrypt.hash(user.password, salt, function (err, hash) {
-            console.log(hash);
-            if (err) return next(err);
             user.password = hash;
             next();
         });

@@ -23,9 +23,9 @@ const auth = require('./src/routes/auth');
 const order = require('./src/routes/order');
 const product = require('./src/routes/product');
 const user = require('./src/routes/user');
+const dashboard = require('./src/routes/dashboard');
 
 //#region Database
-console.log(config);
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db, {
 	useNewUrlParser: true,
@@ -36,10 +36,6 @@ let db = mongoose.connection;
 db.on('error', function () {
 	throw new Error(`Unnable to connect to database ${config.db}`);
 })
-
-db.on('all', function (event, listener) {
-	console.log(event, listener);
-});
 //#endregion
 
 //#region Server
@@ -55,17 +51,19 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.gzipResponse());
 
 server.use(
-	function crossOrigin(req,res,next){
-	  res.header("Access-Control-Allow-Origin", "*");
-	  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	  return next();
+	function crossOrigin(req, res, next) {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+		res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization');
+		return next();
 	}
-  );
+);
 
 router.add('/api', auth);
-router.add('/api/order', order);
-router.add('/api/product', product);
-router.add('/api/user', user);
+router.add('/api/orders', order);
+router.add('/api/products', product);
+router.add('/api/users', user);
+router.add('/api/dashboard', dashboard);
 router.applyRoutes(server);
 
 server.on('after', restify.plugins.metrics({
